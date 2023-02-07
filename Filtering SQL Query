@@ -1,0 +1,26 @@
+//Find film titles that contain the word Uptown in any position
+SELECT film_ID, title, description
+FROM film
+WHERE title LIKE '%Uptown%'
+
+//Find film titles with a runtime of more than 120 minutes and rental rate of more than 3
+SELECT film_ID, title, description
+FROM film
+WHERE length > 120 AND rental_rate > 3
+
+//Find film titles with a film rating of PG or G
+SELECT film_ID, title, description
+FROM film
+WHERE rating IN ('PG', 'G')
+
+//For films that are either PG or G, find the count of the movies, the average rental rate, and the maximum and minimum rental duration of those movies
+
+SELECT rating,
+COUNT (title),
+AVG (rental_rate),
+MAX (rental_duration),
+MIN (rental_duration)
+FROM film
+WHERE rating IN ('PG, 'G')
+GROUP BY rating
+
