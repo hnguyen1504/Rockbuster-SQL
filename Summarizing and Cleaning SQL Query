@@ -1,0 +1,45 @@
+//Find any duplicate data in film table
+
+SELECT film_id,
+title,
+release_year,
+rental_duration,
+rental_rate,
+COUNT (*)
+FROM film
+GROUP BY film_id,
+title,
+release_year,
+rental_rate
+HAVING COUNT (*) > 1;
+
+//Find any non-uniform values in film table
+
+SELECT DISTINCT film_id, title, description,
+release_year, language_id,
+rental_duration, rental_rate, length, replacement_cost,
+rating, last_update, special_features
+FROM film;
+
+//Calculate descriptive statistics for customer table
+
+SELECT MIN(customer_id) AS min_customer_id,
+MAX(customer_id) AS max_customer_id,
+AVG(customer_id) AS avg_customer_id,
+MIN(store_id) AS min_store_id,
+MAX(store_id) AS max_store_id,
+AVG(store_id) AS avg_store_id,
+MIN(address_id) AS min_address_id,
+MAX(address_id) AS max_address_id,
+AVG(address_id) AS avg_address_id,
+MIN(create_date) AS min_create_date,
+MAX(create_date) AS max_create_date,
+MODE() WITHIN GROUP (ORDER BY create_date) AS create_date,
+MIN(last_update) AS min_last_update,
+MAX(last_update) As max_last_update,
+MODE() WITHIN GROUP (ORDER BY last_update) AS last_update,
+MODE() WITHIN GROUP (ORDER BY first_name) AS first_name,
+MODE() WITHIN GROUP (ORDER BY last_name) AS last_name,
+MODE() WITHIN GROUP (ORDER BY email) AS email,
+MODE() WITHIN GROUP (ORDER BY active) AS mode_active
+FROM customer
